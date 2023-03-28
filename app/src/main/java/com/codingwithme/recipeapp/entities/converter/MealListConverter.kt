@@ -24,14 +24,12 @@ class MealListConverter {
 
     @TypeConverter
     fun toCategoryList ( categoryString: String):List<MealsItems>?{
-        if (categoryString == null){
-            return (null)
-        }else{
+        return run {
             val gson = Gson()
             val type = object :TypeToken<MealsItems>(){
 
             }.type
-            return  gson.fromJson(categoryString,type)
+            gson.fromJson(categoryString,type)
         }
     }
 }
